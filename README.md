@@ -27,6 +27,21 @@ nightmare
  ...
 ```
 
+## For file upload inputs in iframe
+Might not working for nesting iframe and only implement a simple attributes selector query for finding file input element.
+Attributes selector are simple split into array,for example `class='classname'` become `['class','classname']`, `id='idname'` become `['id','idname']`.
+```js
+var Nightmare = require('nightmare');
+require('nightmare-upload')(Nightmare);
+var nightmare = Nightmare();
+nightmare
+ .goto('http://some-url.tld')
+ .uploadInIframe('#iframeSelector',['class','<classname>',],'/path/to/my/upload.ext')
+ .uploadInIframe('#iframeSelector',['id','<idname>',],'/path/to/my/upload.ext')
+ .click('#button_that_submits_form_for_upload')
+ ...
+```
+
 ## References/Credits
 
   * @Zn4rk for [bringing this method to my attention](https://github.com/segmentio/nightmare/issues/235#issuecomment-214226205)
